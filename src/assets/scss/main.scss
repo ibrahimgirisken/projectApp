@@ -1,0 +1,94 @@
+/*
+Theme Name: Sungo 
+Author: theme_ocean
+Author URI: https://themeforest.net/user/theme_ocean
+Description: Sungo - Ecology & Solar Energy HTML Template<
+Version: 1.0.0
+*/
+
+/*CSS Table Of Content Ends Here*/
+
+//>> Bootstrap <<//
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+//>> Basic Start <<//
+
+//>> Mixins <<//
+@import "_mixins";
+//>> Variables <<//	
+@import "_variables";
+//>> Buttons <<//
+@import "_buttons";
+//>> Typography <<//
+@import "_typography";
+//>> Basic End <<//	
+
+@import "_customDropdown";
+
+//>> Template Section Style Start <<//
+
+//>> About <<//
+@import "_about";
+
+//>> Animation <<//
+@import "_animation";
+
+//>> Brand <<//
+@import "_brand";
+
+//>> Contact <<//
+@import "_contact";
+
+//>> Cta <<//
+@import "_cta";
+
+//>> Faq <<//
+@import "_faq";
+
+//>> Feature <<//
+@import "_feature";
+
+//>> Footer <<//
+@import "_footer";
+
+//>> Header <<//
+@import "_header";
+
+//>> Helping <<//
+@import "_helping";
+
+//>> Hero <<//
+@import "_hero";
+
+//>> Marquee <<//
+@import "_marquee";
+
+//>> MeanMenu <<//
+@import "_meanmenu";
+
+//>> News <<//
+@import "_news";
+
+//>> Pricing <<//
+@import "_pricing";
+
+//>> Preloader <<//
+@import "_preloader";
+
+//>> Project <<//
+@import "_project";
+
+//>> Section <<//
+@import "_section";
+
+//>> Service <<//
+@import "_service";
+
+//>> Team <<//
+@import "_team";
+
+//>> Testimonial <<//
+@import "_testimonial";
+
+//>> Template Section Style End <<//
+
