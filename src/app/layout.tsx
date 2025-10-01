@@ -6,6 +6,7 @@ import '@/assets/css/animate.css';
 import 'react-modal-video/scss/modal-video.scss';
 import AddAnimation from "@/components/ui/addAnimation";
 import CustomMouseCursor from "@/components/ui/customMouseCursor";
+import Providers from "./providers";
 
 
 export const metadata: Metadata = {
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Providers>
         <AddAnimation/>
         <CustomMouseCursor/>
         {children}
+        </Providers>
       </body>
     </html>
   );
