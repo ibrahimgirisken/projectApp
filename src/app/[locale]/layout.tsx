@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import ClientProviders from '../../components/ClientProviders';
+import AddAnimation from '@/components/ui/addAnimation';
+import CustomMouseCursor from '@/components/ui/customMouseCursor';
 
 export const metadata = {
   title: 'CW Enerji',
@@ -22,6 +24,8 @@ export default async function RootLayout(props: Awaited<Props>) {
       <body>
         <ClientProviders>
           <NextIntlClientProvider locale={locale}>
+          <AddAnimation />
+          <CustomMouseCursor />
             {props.children}
           </NextIntlClientProvider>
         </ClientProviders>

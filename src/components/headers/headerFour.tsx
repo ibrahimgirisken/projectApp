@@ -32,15 +32,6 @@ const HeaderFour = () => {
                                         </nav>
                                     </div>
                                 </div>
-                                <SearchPopup/>
-                                <div className="header-button">
-                                    <Link href="/contact" className="theme-btn">
-                                        <span>
-                                            get A Quote
-                                            <i className="fa-solid fa-arrow-right-long" />
-                                        </span>
-                                    </Link>
-                                </div>
                                 <div className="header__hamburger d-lg-none my-auto">
                                     <ExtraInfoOffcanvas />
                                 </div>

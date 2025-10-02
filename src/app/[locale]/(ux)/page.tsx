@@ -14,17 +14,7 @@ import React from 'react';
 export default async function HomePage({ params }: { params: { locale: string } }) {
   return (
     <>
-<HeroThree/>
-        <AboutThree/>
-        <PartnersOne className="pt-0"/>
-        <ServicesThree/>
-        <WorkProcess/>
-        <AchievementTwo achievementWrapperClass="style-2" className="section-bg-2"/>
-        <ProjectsThree/>
-        <MarqueTwo className="section-padding"/>
-        <TeamesThree/>
-        <TestimonialThree/>
-        < BlogsThree/>
+        <HeroThree/>
     </>
   );
 }
