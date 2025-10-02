@@ -1,5 +1,5 @@
-import { createApiService } from '@/lib/createApiService';
-import { createServerApi } from '@/lib/serverApi';
+import { createApiService } from '@/lib/api/createApiService';
+import { createServerApi } from '@/lib/api/serverApi';
 import { ApplicationService } from '../types/ApplicationService';
 
 const apiInstance = createServerApi();
