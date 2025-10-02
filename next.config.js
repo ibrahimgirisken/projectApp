@@ -1,6 +1,4 @@
-const nextConfig = {
-  reactStrictMode: true,
-  // Diğer ayarlarınızı buraya ekleyebilirsiniz
-};
+const createNextIntlPlugin = require('next-intl/plugin');
 
-module.exports = nextConfig;
+const withNextIntl = createNextIntlPlugin();
+module.exports = withNextIntl({});

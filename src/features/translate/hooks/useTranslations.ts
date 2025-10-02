@@ -6,6 +6,4 @@ export const {
   useCreate: useCreateTranslation,
   useUpdate: useUpdateTranslation,
   useById: useTranslationById,
-  useByLang: useByLang,
-
 } = createQueryHooks('translations', translateService);
