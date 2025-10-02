@@ -4,10 +4,16 @@ import { menuDataSingleHomePage } from "@/db/menuDataSingleHomePage";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { usePages } from "@/features/page/hooks/usePages"
+import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
+import { useLocale, useTranslations } from "next-intl";
 
 function Navbar() {
     const pathName = usePathname()
     const [data, setData] = useState<MenuItemDataType[]>([])
+    const { data: pages = [], isLoading, error } = usePages();
+      const locale = useLocale();
+      const t = useTranslations();
     useEffect(() => {
         if (pathName === '/home-one-single' || pathName === '/home-two-single' || pathName === '/home-three-single' || pathName === '/home-four-single') {
             setData(menuDataSingleHomePage)
@@ -17,6 +23,26 @@ function Navbar() {
     })
     return (
         <ul>
+            {pages.map((page, index) => {
+                            const trLang = page.pageTranslations.find(t => t.langCode === locale)
+                            return (
+                                <li
+  key={page.id}
+  className={
+    pathName === `/${(t('route.pages'))}/${page.url}`
+      ? 'active'
+      : ''
+  }
+>
+  <Link
+    href={`/${(t('route.pages'))}/${trLang?.url}`}
+  >
+    {trLang?.pageTitle}
+  </Link>
+</li>
+
+                            )
+                        })}
             {data.map(({ link, title, megamenu, submenu }, index) => (
                 <li key={index} className={`${megamenu ? 'menu-thumb' : ''} ${submenu ? 'has-dropdown' : ''} ${index === 0 ? 'active' : ''}`}>
                     <Link href={link}>
