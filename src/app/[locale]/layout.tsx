@@ -1,4 +1,3 @@
-import '@/styles/globals.css';
 import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import ClientProviders from '../../components/ClientProviders';
