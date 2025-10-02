@@ -13,6 +13,7 @@ export function slugify(text: string): string {
     .replace(/Ü/g, 'U')
     .replace(/Ş/g, 'S')
     .replace(/İ/g, 'I')
+    .replace(/I/g, 'I')
     .replace(/Ö/g, 'O')
     .replace(/Ç/g, 'C')
     .replace(/[^a-zA-Z0-9\s-]/g, '') // harf, sayı ve boşluk dışındakileri sil
