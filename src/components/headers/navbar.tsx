@@ -4,13 +4,12 @@ import { menuDataSingleHomePage } from "@/db/menuDataSingleHomePage";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { usePages } from "@/features/page/hooks/usePages";
 import { useLocale, useTranslations } from "next-intl";
+import { Page } from "@/features/page/types/page";
 
-function Navbar() {
+function Navbar({menu}:{menu:Page[]}) {
   const pathName = usePathname();
   const [data, setData] = useState<MenuItemDataType[]>([]);
-  const { data: pages = [], isLoading, error } = usePages();
   const locale = useLocale();
   const t = useTranslations();
   useEffect(() => {
@@ -27,11 +26,11 @@ function Navbar() {
   });
   return (
     <ul>
-      {pages.map((page, index) => {
-        const trLang = page.pageTranslations.find((t) => t.langCode === locale);
+      {menu.map((menu, index) => {
+        const trLang = menu.pageTranslations.find((t) => t.langCode === locale);
         return (
           <li
-            key={page.id}
+            key={menu.id}
             className={
               pathName === `/${trLang?.url}` ? "active" : ""
             }

@@ -1,12 +1,12 @@
 'use client'
 import Link from "next/link"
 import Navbar from "./navbar"
-import SearchPopup from "./searchPopup"
 import useSticky from "@/hooks/useSticky"
 import ExtraInfoOffcanvas from "./extraInfoOffcanvas"
 import Image from "next/image"
+import { Page } from "@/features/page/types/page";
 
-const HeaderFour = () => {
+const HeaderFour = ({menu}:{menu:Page[]}) => {
     const [isSticky] = useSticky()
     return (
         <header>
@@ -28,7 +28,7 @@ const HeaderFour = () => {
                                 <div className="mean__menu-wrapper d-lg-block d-none">
                                     <div className="main-menu">
                                         <nav id="mobile-menu">
-                                            <Navbar />
+                                            <Navbar menu={menu}/>
                                         </nav>
                                     </div>
                                 </div>

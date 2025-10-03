@@ -1,6 +1,8 @@
 import { SuCallMessage, SuEmail, SuLocation } from "@/lib/icons";
 import Image from "next/image";
 import Link from "next/link";
+import { Page } from "@/features/page/types/page";
+import { useLocale, useTranslations } from "next-intl";
 
 const contactInfo = [
     {
@@ -53,7 +55,9 @@ const recentPosts = [
     },
 ];
 
-const Footer = () => {
+const Footer = ({ menu }: { menu: Page[] }) => {
+    const locale = useLocale();
+    const t = useTranslations();
     return (
         <footer className="footer-section footer-bg">
             <div className="container">
@@ -126,14 +130,20 @@ const Footer = () => {
                                     <h3>Quick Links</h3>
                                 </div>
                                 <ul className="list-area">
-                                    {quickLinks.map((link, index) => (
-                                        <li key={index}>
-                                            <Link href={link.link}>
-                                                <i className="fa-solid fa-chevron-right" />
-                                                {link.text}
-                                            </Link>
-                                        </li>
-                                    ))}
+                                    {menu.map((item) => {
+                                        const trLang =
+                                            item.pageTranslations?.find((t) => t.langCode === locale) ??
+                                            item.pageTranslations?.find((t: any) => t.langCode === locale);
+
+                                        return (
+                                            <li key={item.id}>
+                                                <Link href={`/${trLang?.url}`}>
+                                                    <i className="fa-solid fa-chevron-right" />
+                                                    {trLang?.pageTitle}
+                                                </Link>
+                                            </li>
+                                        );
+                                    })}
                                 </ul>
                             </div>
                         </div>

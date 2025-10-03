@@ -1,13 +1,12 @@
-import HeaderFour from '@/components/headers/headerFour'
-import Footer from '@/components/sections/footer'
 import React from 'react'
+import LayoutShell from './layoutshell'
 
 export default function UXLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <HeaderFour />
+    <LayoutShell>
         {children}
-      <Footer/>
+    </LayoutShell>
     </>
   )
 }
