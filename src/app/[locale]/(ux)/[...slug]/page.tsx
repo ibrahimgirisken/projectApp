@@ -3,10 +3,11 @@ import resolveRouteKey from '@/utils/resolveRouteKey';
 import ProductList from '@/features/product/pages/ProductsPage';
 import ProductDetail from '@/features/product/pages/ProductDetailPage';
 import { getSafeTranslations } from '@/i18n/getTranslationsSafe';
+import PageDetailPage from '@/features/page/pages/ux/PageDetailPage';
 
 export default async function UXRouter(props: { params: { locale: string; slug?: string[] } }) {
   const { params } = props;
-  const { locale, slug = [] } = await params;
+  const { locale, slug = [] } = params;
 
   const t = await getSafeTranslations({ locale });
 
@@ -14,6 +15,8 @@ export default async function UXRouter(props: { params: { locale: string; slug?:
     products: await t('route.products'),
     categories: await t('route.categories'),
     projects: await t('route.projects'),
+    pages: await t('route.pages'),
+
   };
 
   const routeSegment = slug[0];
@@ -21,12 +24,16 @@ export default async function UXRouter(props: { params: { locale: string; slug?:
 
   const routeKey = resolveRouteKey(routeSegment, translatedRoutes);
 
-  if (!routeKey) return <div>404 Not Found</div>;
+  if (!routeKey && slug.length === 1 && routeSegment) {
+    return <PageDetailPage slug={routeSegment} locale={locale} />;
+  }
 
   if (detailSegment) {
     switch (routeKey) {
       case 'products':
         return <ProductDetail slug={detailSegment} locale={locale} />;
+      case 'pages':
+        return <PageDetailPage slug={detailSegment} locale={locale}/>;
       case 'projects':
         return <div>Proje Detay</div>;
       default:

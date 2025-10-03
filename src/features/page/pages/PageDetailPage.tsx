@@ -1,7 +1,7 @@
 'use client';
 
-import { Container } from 'react-bootstrap';
 import { usePagesByUrlAndLang } from '../hooks/usePages';
+import Project from '@/app/(innerPage)/project/page';
 
 export default function ProductDetailPage({ slug, locale }: { slug: string; locale: string }) {
 
@@ -15,7 +15,8 @@ export default function ProductDetailPage({ slug, locale }: { slug: string; loca
     const translation = page.pageTranslations.find(t => t.langCode.startsWith(locale));
 
     return (
-        <Container>
+        <>
+            <Project/>
             <h1>{page.id}</h1>
             {translation && (
                 <>
@@ -24,6 +25,6 @@ export default function ProductDetailPage({ slug, locale }: { slug: string; loca
                     <div dangerouslySetInnerHTML={{ __html: translation.content }} />
                 </>
             )}
-        </Container>
+        </>
     );
 }
