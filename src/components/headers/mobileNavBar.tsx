@@ -14,6 +14,8 @@ const MobileNavBar = () => {
         );
     };
 
+    
+
     return (
         <div className='mobile-menu d-lg-none'>
             {menuData.map((item, index) => {
