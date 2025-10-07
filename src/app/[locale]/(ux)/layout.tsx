@@ -1,5 +1,5 @@
 import React from 'react'
-import LayoutShell from './layoutshell'
+import LayoutShell from './layoutShell'
 
 export default function UXLayout({ children }: { children: React.ReactNode }) {
   return (

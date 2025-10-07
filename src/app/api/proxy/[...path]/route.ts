@@ -1,4 +1,3 @@
-// app/api/proxy/[...path]/route.ts
 import { cookies, headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
@@ -8,7 +7,10 @@ async function forwardOnce(req: Request, method: string, path: string[]) {
   const url = new URL(req.url);
   const target = `${BACKEND_BASE}/${path.join('/')}${url.search}`;
 
-  const body = method === 'GET' || method === 'HEAD' ? undefined : await req.arrayBuffer();
+const body =
+  method === 'GET' || method === 'HEAD'
+    ? undefined
+    : Buffer.from(await req.arrayBuffer());
   const token = (await cookies()).get('accessToken')?.value;
 
   const h = new Headers();
@@ -29,7 +31,6 @@ async function forwardOnce(req: Request, method: string, path: string[]) {
 }
 
 async function tryRefresh(req: Request) {
-  // relative fetch da olur: '/api/refresh'
   const r = await fetch(new URL('/api/refresh', req.url), { method: 'POST', cache: 'no-store' });
   return r.ok;
 }
@@ -39,22 +40,18 @@ type Ctx = { params: Promise<{ path: string[] }> };
 async function handle(req: Request, ctx: Ctx, method: string) {
   const { path } = await ctx.params;
 
-  // 1. deneme
   let resp = await forwardOnce(req, method, path);
   if (resp.status !== 401) {
     return new Response(await resp.arrayBuffer(), { status: resp.status, headers: resp.headers });
   }
 
-  // 401 → refresh dene
   const refreshed = await tryRefresh(req);
   if (!refreshed) {
-    // HTML isteklerinde login’e redirect; XHR/JSON’da 401 döndür.
     const accept = req.headers.get('accept') ?? '';
     const res = accept.includes('text/html')
       ? NextResponse.redirect(new URL('/login', req.url))
       : NextResponse.json({ error: 'unauthorized' }, { status: 401 });
 
-    // çerezleri temizlemek istersen:
     res.cookies.set('accessToken', '', {
       path: '/',
       httpOnly: true,
@@ -72,7 +69,6 @@ async function handle(req: Request, ctx: Ctx, method: string) {
     return res;
   }
 
-  // 2. deneme
   resp = await forwardOnce(req, method, path);
   return new Response(await resp.arrayBuffer(), { status: resp.status, headers: resp.headers });
 }

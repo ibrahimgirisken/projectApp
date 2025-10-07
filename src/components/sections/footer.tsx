@@ -57,7 +57,6 @@ const recentPosts = [
 
 const Footer = ({ menu }: { menu: Page[] }) => {
     const locale = useLocale();
-    const t = useTranslations();
     return (
         <footer className="footer-section footer-bg">
             <div className="container">
@@ -137,7 +136,7 @@ const Footer = ({ menu }: { menu: Page[] }) => {
 
                                         return (
                                             <li key={item.id}>
-                                                <Link href={`/${trLang?.url}`}>
+                                                <Link href={`/${locale}/${trLang?.url}`}>
                                                     <i className="fa-solid fa-chevron-right" />
                                                     {trLang?.pageTitle}
                                                 </Link>

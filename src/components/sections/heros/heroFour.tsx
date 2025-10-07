@@ -27,6 +27,9 @@ const heroSlides = [
         link: '/',
     },
 ]
+
+
+
 const HeroFour = () => {
     return (
         <section className="hero-section hero-1">

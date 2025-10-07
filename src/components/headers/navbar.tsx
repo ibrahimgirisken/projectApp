@@ -11,7 +11,6 @@ function Navbar({menu}:{menu:Page[]}) {
   const pathName = usePathname();
   const [data, setData] = useState<MenuItemDataType[]>([]);
   const locale = useLocale();
-  const t = useTranslations();
   useEffect(() => {
     if (
       pathName === "/home-one-single" ||
@@ -27,16 +26,16 @@ function Navbar({menu}:{menu:Page[]}) {
   return (
     <ul>
       {menu.map((menu, index) => {
-        const trLang = menu.pageTranslations.find((t) => t.langCode === locale);
+        const langDatas = menu.pageTranslations.find((t) => t.langCode === locale);
         return (
           <li
             key={menu.id}
             className={
-              pathName === `/${trLang?.url}` ? "active" : ""
+              pathName === `/${locale}/${langDatas?.url}` ? "active" : ""
             }
           >
-            <Link href={`/${trLang?.url}`}>
-              {trLang?.pageTitle}
+            <Link href={`/${locale}/${langDatas?.url}`}>
+              {langDatas?.pageTitle}
             </Link>
           </li>
         );
