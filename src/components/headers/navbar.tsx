@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { menuDataSingleHomePage } from "@/db/menuDataSingleHomePage";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLocale} from "next-intl";
+import { useLocale } from "next-intl";
 import { Page } from "@/features/page/types/page";
 import { useLangs } from "@/features/lang/hooks/useLang";
 
-function Navbar({menu}:{menu:Page[]}) {
-  const {data:langs=[],isLoading,error}=useLangs();
+function Navbar({ menu }: { menu: Page[] }) {
+  const { data: langs = [], isLoading, error } = useLangs();
   const pathName = usePathname();
   const [data, setData] = useState<MenuItemDataType[]>([]);
   const locale = useLocale();
@@ -42,16 +42,32 @@ function Navbar({menu}:{menu:Page[]}) {
         );
       })}
       <li>
-        <ul>
-          {langs.map((lang,index)=>{
-            return(
-               <Link href={`/${lang.langCode}`}>
-              {lang?.title}
-            </Link>
-            );
+        <li>
+          {langs.map((lang, index) => {
+            return (
+              <Link href={lang.langCode}>
+                {
+                  lang.langCode === locale ? (<>
+                    {lang.langCode} <i className="fas fa-angle-down" />
+                  </>) : null
+                }
+              </Link>);
           })}
-        </ul>
-      </li> 
+        </li>
+        {
+          <ul className="submenu">
+            {langs.map((lang, index) => {
+              return (
+                <li className="homemenu-items">
+                  <Link href={`/${lang.langCode}`}>
+                    {lang?.title}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        }
+      </li>
     </ul>
   );
 }
