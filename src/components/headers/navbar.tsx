@@ -42,23 +42,24 @@ function Navbar({ menu }: { menu: Page[] }) {
         );
       })}
       <li>
-        <li>
-          {langs.map((lang, index) => {
-            return (
+        {langs.map((lang, index) => {
+          return (
+            <li key={lang.id}>
               <Link href={lang.langCode}>
                 {
                   lang.langCode === locale ? (<>
                     {lang.langCode} <i className="fas fa-angle-down" />
                   </>) : null
                 }
-              </Link>);
-          })}
-        </li>
+              </Link>
+            </li>
+          );
+        })}
         {
           <ul className="submenu">
             {langs.map((lang, index) => {
               return (
-                <li className="homemenu-items">
+                <li key={lang.id} className="homemenu-items">
                   <Link href={`/${lang.langCode}`}>
                     {lang?.title}
                   </Link>
