@@ -1,5 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { createApiService } from './createApiService';
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { createApiService } from "./createApiService";
 
 export function createQueryHooks<T extends { id: string }>(
   key: string,
@@ -20,25 +25,30 @@ export function createQueryHooks<T extends { id: string }>(
 
     useByLang: (lang: string) =>
       useQuery<T[]>({
-        queryKey: [key,'lang',lang],
+        queryKey: [key, "lang", lang] as const,
         queryFn: () => service.getAllByLang(lang),
+        staleTime: 1000 * 60 * 60, // 1 saat
+        gcTime: 1000 * 60 * 60 * 6, // 6 saat
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        placeholderData: keepPreviousData,
       }),
 
     useById: (id: string) =>
       useQuery<T>({
-        queryKey: [key,'id',id],
+        queryKey: [key, "id", id],
         queryFn: () => service.getById(id),
       }),
 
     useParamsData: (pUrl: string) =>
       useQuery<T>({
-        queryKey: [key,'params', pUrl],
+        queryKey: [key, "params", pUrl],
         queryFn: () => service.getByParams(pUrl),
       }),
 
     useByUrlAndLang: (slug: string, lang: string) =>
       useQuery<T>({
-        queryKey: [key, 'slug', slug, 'lang', lang],
+        queryKey: [key, "slug", slug, "lang", lang],
         queryFn: () => service.getByUrlAndLang(slug, lang),
       }),
 
