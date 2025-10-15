@@ -1,7 +1,7 @@
 'use client';
 import { useProducts } from '@/features/product/hooks/useProducts'
 import { Row, Col, Card } from 'react-bootstrap';
-import { Product } from '@/features/product/types/product';
+import  Product  from '@/features/product/types/product';
 import { useLocale, useTranslations } from 'next-intl';
 
 function UXProductsPage() {
