@@ -4,9 +4,8 @@ import "@/assets/scss/main.scss";
 import "@/assets/css/animate.css";
 import "react-modal-video/scss/modal-video.scss";
 
-import AddAnimation from "@/components/ui/addAnimation";
-import CustomMouseCursor from "@/components/ui/customMouseCursor";
 import Providers from "./providers";
+import { useLocale } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Sungo - Ecology & Solar Energy Next.js Template",
@@ -14,8 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = useLocale();
   return (
-    <html lang="tr">
+    <html lang={locale}>
       <body>
         <Providers>
             {children}

@@ -6,7 +6,7 @@ import ExtraInfoOffcanvas from "./extraInfoOffcanvas"
 import Image from "next/image"
 import { Page } from "@/features/page/types/page";
 
-const HeaderFour = ({menu}:{menu:Page[]}) => {
+const HeaderFour = ({menu,locale}:{menu:Page[],locale:string}) => {
     const [isSticky] = useSticky()
     return (
         <header>
@@ -16,10 +16,10 @@ const HeaderFour = ({menu}:{menu:Page[]}) => {
                         <div className="header-main">
                             <div className="header-left">
                                 <div className="logo">
-                                    <Link href="/" className="header-logo">
+                                    <Link href={`/`+locale} className="header-logo">
                                         <Image width={170} height={43} sizes="100vw" src="/img/logo/white-logo.svg" alt="logo-img" />
                                     </Link>
-                                    <Link href="/" className="header-logo-2">
+                                    <Link href={`/`+locale} className="header-logo-2">
                                         <Image width={170} height={43} sizes="100vw" src="/img/logo/black-logo.svg" alt="logo-img" />
                                     </Link>
                                 </div>
