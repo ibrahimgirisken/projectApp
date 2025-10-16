@@ -27,9 +27,6 @@ export function createQueryHooks<T extends { id: string }>(
       useQuery<T[]>({
         queryKey: [key, "lang", lang] as const,
         queryFn: () => service.getAllByLang(lang),
-        staleTime: 1000 * 60 * 60, // 1 saat
-        gcTime: 1000 * 60 * 60 * 6, // 6 saat
-        refetchOnWindowFocus: false,
         refetchOnMount: false,
         placeholderData: keepPreviousData,
       }),
@@ -46,10 +43,12 @@ export function createQueryHooks<T extends { id: string }>(
         queryFn: () => service.getByParams(pUrl),
       }),
 
-    useByUrlAndLang: (slug: string, lang: string) =>
+    useByUrl: (slug: string) =>
       useQuery<T>({
-        queryKey: [key, "slug", slug, "lang", lang],
-        queryFn: () => service.getByUrlAndLang(slug, lang),
+        queryKey: [key, "slug", slug],
+        queryFn: () => service.getByUrl(slug),
+        refetchOnMount: false,
+        placeholderData: keepPreviousData,
       }),
 
     useCreate: () => {

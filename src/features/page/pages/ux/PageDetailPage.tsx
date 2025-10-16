@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react'
-import { usePagesByUrlAndLang } from '@/features/page/hooks/usePages';
+import { usePagesByUrl } from '@/features/page/hooks/usePages';
 import Project from '@/app/(innerPage)/project/page';
 
 export default function PageDetail({slug,locale}:{slug:string,locale:string}) {
-      const { data: page, isLoading, error } = usePagesByUrlAndLang(slug, locale);
+      const { data: page, isLoading, error } = usePagesByUrl(slug);
   
   if (isLoading) return <div>Yükleniyor...</div>;
   if (error) return <div>Ürün bulunamadı.</div>;

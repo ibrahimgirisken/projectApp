@@ -24,8 +24,8 @@ export function createApiService<T extends EntityWithOptionalId>(
     getById: (id: string): Promise<T> =>
       api.get(`/${basePath}/by-id?id=${id}&IncludeAllLanguages=true`).then((res) => res.data),
 
-    getByUrlAndLang: (slug: string, lang: string): Promise<T> =>
-      api.get(`/${basePath}/by-url?Language=${lang}&UrlAddress=${slug}`).then((res) => res.data),
+    getByUrl: (slug: string): Promise<T> =>
+      api.get(`/${basePath}/by-url?UrlAddress=${slug}`).then((res) => res.data),
     
     getByLang:(lang:string):Promise<T[]>=>
       api.get(`/${basePath}/by-lang?Language=${lang}`).then((res) => res.data),

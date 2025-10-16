@@ -7,5 +7,5 @@ export const {
   useByLang: usePagesByLang,
   useCreate: useCreatePage,
   useUpdate: useUpdatePage,
-  useByUrlAndLang: usePagesByUrlAndLang,
+  useByUrl: usePagesByUrl,
 } = createQueryHooks('pages', pageService);
