@@ -10,15 +10,14 @@ export default function ProductDetailPage() {
   const rawUrl = params?.url;
   const url = Array.isArray(rawUrl) ? rawUrl[0] : rawUrl;
   const locale = useLocale();
-  const { data: product, isLoading, error } = useProductById(url as string);
+  const { data: product, error } = useProductById(url as string);
 
-  if (isLoading) return <div>Yükleniyor...</div>;
   if (error) {
     return <p>Bir hata oluştu.</p>;
   }
   if (!product) return <div>Ürün bulunamadı.</div>;
 
-  const translation = product.productTranslations.find(t => t.langCode.startsWith(locale));
+  const translation = product.productTranslations.filter;
 
   return (
     <Container>

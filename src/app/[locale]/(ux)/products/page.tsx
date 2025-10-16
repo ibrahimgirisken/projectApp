@@ -6,10 +6,9 @@ import { useLocale, useTranslations } from 'next-intl';
 
 function UXProductsPage() {
     const locale = useLocale();
-    const { data: products = [], isLoading, error } = useProducts();
+    const { data: products = [], error } = useProducts();
     const t = useTranslations();
 
-    if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
     return (

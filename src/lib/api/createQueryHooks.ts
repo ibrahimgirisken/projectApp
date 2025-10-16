@@ -23,6 +23,8 @@ export function createQueryHooks<T extends { id: string }>(
       useQuery<T[]>({
         queryKey: [key],
         queryFn: () => service.getAll(),
+        refetchOnMount: false,
+        placeholderData: keepPreviousData,
       }),
 
     useByLang: (lang: string) =>

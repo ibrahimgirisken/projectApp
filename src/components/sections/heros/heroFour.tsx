@@ -10,9 +10,8 @@ import { useBanner } from "@/features/banner/hooks/useBanner"
 import { useLocale } from "next-intl"
 
 const HeroFour = () => {
-    const { data: banners = [], isLoading, error } = useBanner();
+    const { data: banners = [], error } = useBanner();
     const locale = useLocale();
-    if (isLoading) return <div>Menü yükleniyor…</div>;
     if (error) return <div>Menü yüklenirken hata oluştu.</div>;
     const resolveBannerSrc = (img?: string) => {
   if (!img) return '';
