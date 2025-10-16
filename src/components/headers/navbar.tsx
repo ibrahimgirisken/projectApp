@@ -27,7 +27,7 @@ function Navbar({ menu }: { menu: Page[] }) {
   return (
     <ul>
       {menu.map((menu, index) => {
-        const langDatas = menu.pageTranslations[0];
+        const langDatas = menu.pageTranslations.filter(l=>l.langCode==locale)[0];
         return (
           <li
             key={menu.id}
