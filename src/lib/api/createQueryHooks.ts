@@ -15,6 +15,8 @@ export function createQueryHooks<T extends { id: string }>(
       useQuery<T[]>({
         queryKey: [key],
         queryFn: () => service.getAllSingle(),
+        refetchOnMount: false,
+        placeholderData: keepPreviousData,
       }),
 
     useAll: () =>

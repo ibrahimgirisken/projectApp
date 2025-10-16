@@ -22,7 +22,7 @@ export function createApiService<T extends EntityWithOptionalId>(
       api.get(`/${basePath}?${pUrl}`).then((res) => res.data),
 
     getById: (id: string): Promise<T> =>
-      api.get(`/${basePath}/by-id?id=${id}&IncludeAllLanguages=true`).then((res) => res.data),
+      api.get(`/${basePath}/by-id?id=${id}`).then((res) => res.data),
 
     getByUrl: (slug: string): Promise<T> =>
       api.get(`/${basePath}/by-url?UrlAddress=${slug}`).then((res) => res.data),

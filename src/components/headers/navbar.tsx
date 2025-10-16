@@ -1,3 +1,5 @@
+'use client';
+
 import { menuData, MenuItemDataType } from "@/db/menuData";
 import { useEffect, useState } from "react";
 import { menuDataSingleHomePage } from "@/db/menuDataSingleHomePage";
@@ -8,10 +10,11 @@ import { Page } from "@/features/page/types/page";
 import { useLangs } from "@/features/lang/hooks/useLang";
 
 function Navbar({ menu }: { menu: Page[] }) {
-  const { data: langs = [], isLoading, error } = useLangs();
+  const { data: langs = [] } = useLangs();
   const pathName = usePathname();
   const [data, setData] = useState<MenuItemDataType[]>([]);
   const locale = useLocale();
+
   useEffect(() => {
     if (
       pathName === "/home-one-single" ||
@@ -23,14 +26,22 @@ function Navbar({ menu }: { menu: Page[] }) {
     } else {
       setData(menuData);
     }
-  });
+  }, [pathName]);
+
+  const currentSlug = pathName.split('/').slice(2).join('/'); 
+  const activeMenuItem = menu.find((item) =>
+    item.pageTranslations.some((t) => t.url === currentSlug)
+  );
+
   return (
     <ul>
-      {menu.map((menu, index) => {
-        const langDatas = menu.pageTranslations.filter(l=>l.langCode==locale)[0];
+      {menu.map((menuItem) => {
+        const langDatas = menuItem.pageTranslations.find(
+          (l) => l.langCode === locale
+        );
         return (
           <li
-            key={menu.id}
+            key={menuItem.id}
             className={
               pathName === `/${locale}/${langDatas?.url}` ? "active" : ""
             }
@@ -41,33 +52,26 @@ function Navbar({ menu }: { menu: Page[] }) {
           </li>
         );
       })}
-      <li>
-        {langs.map((lang, index) => {
-          return (
-            <li key={lang.id}>
-              <Link href={lang.langCode}>
-                {
-                  lang.langCode === locale ? (<>
-                    {lang.langCode} <i className="fas fa-angle-down" />
-                  </>) : null
-                }
-              </Link>
-            </li>
-          );
-        })}
-        {
-          <ul className="submenu">
-            {langs.map((lang, index) => {
-              return (
-                <li key={lang.id} className="homemenu-items">
-                  <Link href={`/${lang.langCode}`}>
-                    {lang?.title}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        }
+
+      <li className="lang-switch">
+        <button type="button">
+          {locale} <i className="fas fa-angle-down" />
+        </button>
+        <ul className="submenu">
+          {langs.map((lang) => {
+            const targetSlug = activeMenuItem?.pageTranslations.find(
+              (t) => t.langCode === lang.langCode
+            )?.url;
+            const href = targetSlug
+              ? `/${lang.langCode}/${targetSlug}`
+              : `/${lang.langCode}`;
+            return (
+              <li key={lang.id} className="homemenu-items">
+                <Link href={href}>{lang.title}</Link>
+              </li>
+            );
+          })}
+        </ul>
       </li>
     </ul>
   );
