@@ -1,0 +1,27 @@
+{
+  "Navigation": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "projects": "Projekte",
+    "categories": "Kategorien",
+    "contact": "Kontakt"
+  },
+  "Products": {
+    "title": "Unsere Produkte",
+    "subtitle": "Umfassende und ökologische Dienstleistungen anbieten",
+    "description": "Entdecken Sie unsere hochwertigen und innovativen Produkte.",
+    "button": "Alle Produkte ansehen"
+  },
+  "Projects": {
+    "title": "Unsere Projekte",
+    "subtitle": "Lernen Sie unsere inspirierenden Projekte kennen",
+    "description": "Lassen Sie sich von unseren abgeschlossenen Projekten inspirieren.",
+    "button": "Projekte entdecken"
+  },
+  "Categories": {
+    "title": "Kategorien",
+    "subtitle": "Durchsuchen Sie unsere Produkte nach Kategorien",
+    "description": "Durchsuchen Sie unsere Produkte nach Kategorien.",
+    "button": "Alle Kategorien"
+  }
+}

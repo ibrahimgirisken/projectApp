@@ -2,16 +2,15 @@
 
 import { useProductsByLang } from '@/features/product/hooks/useProducts';
 import { Row, Col, Card } from 'react-bootstrap';
-import { Product } from '@/features/product/types/product';
-import { getUseTranslationsSafe } from '@/i18n/getUseTranslationsSafe';
+import  Product  from '@/features/product/types/product';
+import { useTranslations } from 'next-intl';
 
 export default function UXProductsPage({ locale }: { locale: string }) {
   const { data: products, isLoading, error } = useProductsByLang(locale);
-  const t = getUseTranslationsSafe();
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-
+  const t=useTranslations('Products');
   return (
     <>
       <h1 className="text-2xl font-semibold mb-4">{t('other.productTitle')}</h1>

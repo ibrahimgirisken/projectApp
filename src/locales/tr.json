@@ -1,0 +1,27 @@
+{
+  "Navigation": {
+    "home": "Ana Sayfa",
+    "products": "Ürünler",
+    "projects": "Projeler",
+    "categories": "Kategoriler",
+    "contact": "İletişim"
+  },
+  "Products": {
+    "title": "Ürünlerimiz",
+    "subtitle": "Kapsamlı ve Ekolojik Hizmetler Sunuyoruz",
+    "description": "Kaliteli ve yenilikçi ürünlerimizi keşfedin.",
+    "button": "Tüm Ürünleri Gör"
+  },
+  "Projects": {
+    "title": "Projelerimiz",
+    "subtitle": "İlham verici projelerimizle tanışın",
+    "description": "Tamamladığımız projelerden ilham alın.",
+    "button": "Projeleri İncele"
+  },
+  "Categories": {
+    "title": "Kategoriler",
+    "subtitle": "Ürünlerimizi kategorilere göre inceleyin",
+    "description": "Ürünlerimizi kategorilere göre inceleyin.",
+    "button": "Tüm Kategoriler"
+  }
+}

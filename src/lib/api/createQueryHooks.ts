@@ -15,24 +15,21 @@ export function createQueryHooks<T extends { id: string }>(
       useQuery<T[]>({
         queryKey: [key],
         queryFn: () => service.getAllSingle(),
-        refetchOnMount: false,
-        placeholderData: keepPreviousData,
+              refetchOnMount: false,
       }),
 
     useAll: () =>
       useQuery<T[]>({
         queryKey: [key],
         queryFn: () => service.getAll(),
-        refetchOnMount: false,
-        placeholderData: keepPreviousData,
+              refetchOnMount: false,
       }),
 
     useByLang: (lang: string) =>
       useQuery<T[]>({
         queryKey: [key, "lang", lang] as const,
         queryFn: () => service.getAllByLang(lang),
-        refetchOnMount: false,
-        placeholderData: keepPreviousData,
+              refetchOnMount: false,
       }),
 
     useById: (id: string) =>
@@ -51,8 +48,7 @@ export function createQueryHooks<T extends { id: string }>(
       useQuery<T>({
         queryKey: [key, "slug", slug],
         queryFn: () => service.getByUrl(slug),
-        refetchOnMount: false,
-        placeholderData: keepPreviousData,
+              refetchOnMount: false,
       }),
 
     useCreate: () => {

@@ -1,9 +1,12 @@
+'use client'
 import { serviceOneData } from "@/db/serviceOneData"
 import ServiceCard from "./serviceCard"
 import SectionTitle from "@/components/ui/sectionTitle"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 const ServicesFour = () => {
+    const t = useTranslations('Products');
     return (
         <section id="services" className="service-section-3 section-padding pt-0">
             <div className="line-shape-2">
@@ -11,8 +14,8 @@ const ServicesFour = () => {
             </div>
             <div className="container">
                 <SectionTitle className="text-center">
-                    <SectionTitle.SubTitle>Services We Offer</SectionTitle.SubTitle>
-                    <SectionTitle.Title>Provide Comprehensive<br /> Ecological Service</SectionTitle.Title>
+                    <SectionTitle.SubTitle>{t('title')}</SectionTitle.SubTitle>
+                    <SectionTitle.Title>{t('subtitle')}</SectionTitle.Title>
                 </SectionTitle>
                 <div className="row">
                     {

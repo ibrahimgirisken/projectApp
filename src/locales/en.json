@@ -1,0 +1,27 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "products": "Products",
+    "projects": "Projects",
+    "categories": "Categories",
+    "contact": "Contact"
+  },
+  "Products": {
+    "title": "Our Products",
+    "subtitle": "Providing Comprehensive and Ecological Services",
+    "description": "Discover our high-quality and innovative products.",
+    "button": "View All Products"
+  },
+  "Projects": {
+    "title": "Our Projects",
+    "subtitle": "Meet our inspiring projects",
+    "description": "Get inspired by our completed projects.",
+    "button": "Explore Projects"
+  },
+  "Categories": {
+    "title": "Categories",
+    "subtitle": "Browse our products by category",
+    "description": "Browse our products by category.",
+    "button": "All Categories"
+  }
+}
