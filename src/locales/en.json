@@ -4,7 +4,9 @@
     "products": "Products",
     "projects": "Projects",
     "categories": "Categories",
-    "contact": "Contact"
+    "contact": "Contact",
+    "pages":"Pages"
+
   },
   "Products": {
     "title": "Our Products",

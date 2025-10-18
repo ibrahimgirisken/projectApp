@@ -2,18 +2,20 @@ import resolveRouteKey from '@/utils/resolveRouteKey';
 import ProductList from '@/features/product/pages/ProductsPage';
 import ProductDetail from '@/features/product/pages/ProductDetailPage';
 import PageDetailPage from '@/features/page/pages/ux/PageDetailPage';
-import { fetchMessagesServer } from '@/lib/server/fetchMessagesServer';
+import { useLocale, useTranslations } from 'next-intl';
 
-export default async function UXRouter(props: { params: { locale: string; slug?: string[] } }) {
-  const { locale, slug = [] } = props.params;
+export default function UXRouter(props: { params: { locale: string; slug?: string[] } }) {
+  const { slug = [] } = props.params;
 
-  const t = await fetchMessagesServer(locale);
+  // next-intl hooks
+  const locale = useLocale();
+  const t = useTranslations('Navigation');
 
   const translatedRoutes = {
-    products: t.route?.products,
-    categories: t.route?.categories,
-    projects: t.route?.projects,
-    pages: t.route?.pages,
+    products: t('products'),
+    categories: t('categories'),
+    projects: t('projects'),
+    pages: t('pages'),
   };
 
   const routeSegment = slug[0];
@@ -45,6 +47,6 @@ export default async function UXRouter(props: { params: { locale: string; slug?:
     case 'categories':
       return <div>Kategoriler Listesi</div>;
     default:
-      return <div>404 Not Found</div>;
-  }
+    }
+    return <div>404 Not Found</div>;
 }
