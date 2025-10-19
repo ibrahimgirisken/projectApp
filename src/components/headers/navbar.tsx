@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { menuDataSingleHomePage } from "@/db/menuDataSingleHomePage";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Page } from "@/features/page/types/page";
 import { useLangs } from "@/features/lang/hooks/useLang";
 
@@ -14,6 +14,7 @@ function Navbar({ menu }: { menu: Page[] }) {
   const pathName = usePathname();
   const [data, setData] = useState<MenuItemDataType[]>([]);
   const locale = useLocale();
+  const t=useTranslations('Navigation');
 
   useEffect(() => {
     if (
