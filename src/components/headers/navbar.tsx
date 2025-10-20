@@ -47,7 +47,7 @@ function Navbar({ menu }: { menu: Page[] }) {
               pathName === `/${locale}/${langDatas?.url}` ? "active" : ""
             }
           >
-            <Link href={`/${locale}/${langDatas?.url}`}>
+            <Link href={`/${locale}/pages/${langDatas?.url}`}>
               {langDatas?.pageTitle}
             </Link>
           </li>
@@ -64,7 +64,7 @@ function Navbar({ menu }: { menu: Page[] }) {
               (t) => t.langCode === lang.langCode
             )?.url;
             const href = targetSlug
-              ? `/${lang.langCode}/${targetSlug}`
+              ? `/${lang.langCode}/pages/${targetSlug}`
               : `/${lang.langCode}`;
             return (
               <li key={lang.id} className="homemenu-items">

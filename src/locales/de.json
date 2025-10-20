@@ -7,19 +7,29 @@
     "contact": "Kontakt",
     "pages":"Seiten"
   },
+    "Pages": {
+    "pages":"seiten",
+    "title": "Seiten",
+    "subtitle": "Wir bieten umfassende und ökologische Dienstleistungen",
+    "description": "Entdecken Sie unsere hochwertigen und innovativen Produkte.",
+    "button":"Alle Produkte anzeigen"
+  },
   "Products": {
+    "products":"produkte",
     "title": "Unsere Produkte",
     "subtitle": "Umfassende und ökologische Dienstleistungen anbieten",
     "description": "Entdecken Sie unsere hochwertigen und innovativen Produkte.",
     "button": "Alle Produkte ansehen"
   },
   "Projects": {
+    "projects":"projekte",
     "title": "Unsere Projekte",
     "subtitle": "Lernen Sie unsere inspirierenden Projekte kennen",
     "description": "Lassen Sie sich von unseren abgeschlossenen Projekten inspirieren.",
     "button": "Projekte entdecken"
   },
   "Categories": {
+    "categories":"kategorien",
     "title": "Kategorien",
     "subtitle": "Durchsuchen Sie unsere Produkte nach Kategorien",
     "description": "Durchsuchen Sie unsere Produkte nach Kategorien.",

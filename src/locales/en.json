@@ -5,22 +5,31 @@
     "projects": "Projects",
     "categories": "Categories",
     "contact": "Contact",
-    "pages":"Pages"
-
+    "pages": "Pages"
+  },
+  "Pages": {
+    "pages": "pages",
+    "title": "Pages",
+    "subtitle": "We Offer Comprehensive and Ecological Services",
+    "description": "Discover our quality and innovative products.",
+    "button": "View All Pages"
   },
   "Products": {
+    "products": "products",
     "title": "Our Products",
     "subtitle": "Providing Comprehensive and Ecological Services",
     "description": "Discover our high-quality and innovative products.",
     "button": "View All Products"
   },
   "Projects": {
+    "projects": "projects",
     "title": "Our Projects",
     "subtitle": "Meet our inspiring projects",
     "description": "Get inspired by our completed projects.",
     "button": "Explore Projects"
   },
   "Categories": {
+    "categories": "categories",
     "title": "Categories",
     "subtitle": "Browse our products by category",
     "description": "Browse our products by category.",
