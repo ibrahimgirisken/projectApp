@@ -4,7 +4,7 @@ import { Row, Col, Card } from 'react-bootstrap';
 import  Product  from '@/features/product/types/product';
 import { useLocale, useTranslations } from 'next-intl';
 
-function UXProductsPage() {
+function ProductPage() {
     const locale = useLocale();
     const { data: products = [], error } = useProducts();
     const t = useTranslations();
@@ -39,4 +39,4 @@ function UXProductsPage() {
     );
 }
 
-export default UXProductsPage;
+export default ProductPage;

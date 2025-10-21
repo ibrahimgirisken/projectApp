@@ -13,6 +13,7 @@ export interface Page {
   image1: string;
   image2: string;
   image3: string;
+  pageType:string;
   order: number;
   status: boolean;
   moduleIds: string;

@@ -31,7 +31,7 @@ function Navbar({ menu }: { menu: Page[] }) {
 
   const currentSlug = pathName.split('/').slice(2).join('/'); 
   const activeMenuItem = menu.find((item) =>
-    item.pageTranslations.some((t) => t.url === currentSlug)
+    item.pageTranslations.some((l) => l.url === currentSlug)
   );
 
   return (
@@ -47,7 +47,7 @@ function Navbar({ menu }: { menu: Page[] }) {
               pathName === `/${locale}/${langDatas?.url}` ? "active" : ""
             }
           >
-            <Link href={`/${locale}/pages/${langDatas?.url}`}>
+            <Link href={`/${locale}/${langDatas?.url}`}>
               {langDatas?.pageTitle}
             </Link>
           </li>
@@ -64,7 +64,7 @@ function Navbar({ menu }: { menu: Page[] }) {
               (t) => t.langCode === lang.langCode
             )?.url;
             const href = targetSlug
-              ? `/${lang.langCode}/pages/${targetSlug}`
+              ? `/${lang.langCode}/${targetSlug}`
               : `/${lang.langCode}`;
             return (
               <li key={lang.id} className="homemenu-items">

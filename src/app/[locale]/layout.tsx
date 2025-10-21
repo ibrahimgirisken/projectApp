@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import ClientProviders from '../../components/ClientProviders';
 import AddAnimation from '@/components/ui/addAnimation';
 import CustomMouseCursor from '@/components/ui/customMouseCursor';
+import LayoutShell from './layoutShell';
 
 export const metadata = {
   title: 'CW Enerji',
@@ -26,7 +27,9 @@ export default async function RootLayout(props: Awaited<Props>) {
           <NextIntlClientProvider locale={locale}>
           <AddAnimation />
           <CustomMouseCursor />
+              <LayoutShell>
             {props.children}
+          </LayoutShell>
           </NextIntlClientProvider>
         </ClientProviders>
       </body>

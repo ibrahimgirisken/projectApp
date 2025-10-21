@@ -1,3 +1,4 @@
+import React from 'react'
 import AboutFour from '@/components/sections/about/aboutFour'
 import AchievementTwo from '@/components/sections/achievements/achievementTwo'
 import BlogsFour from '@/components/sections/blogs/blogsFour'
@@ -8,13 +9,10 @@ import ProjectsFour from '@/components/sections/projects/projectsFour'
 import ServicesFour from '@/components/sections/services/servicesFour'
 import TeamesFour from '@/components/sections/teames/teamesFour'
 import TestimonialFour from '@/components/sections/testimonials/testimonialFour'
-
-import React from 'react';
-
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <>
-      <HeroFour />
+    <HeroFour />
       <PartnersTwo />
       <ServicesFour />
       <AboutFour />
@@ -25,5 +23,5 @@ export default async function HomePage() {
       <FaqHomeFour className='pt-0'/>
       <BlogsFour />
     </>
-  );
+  )
 }

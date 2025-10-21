@@ -6,6 +6,7 @@ import { pageService } from '../api/pageService'
 import { Button, Col, Form, Row, Tab, Tabs } from 'react-bootstrap'
 import ImageUpload from '@/shared/imageUpload'
 import { Module } from '@/features/module/types/module'
+import { PageType } from '../types/pageType'
 
 type PageFormProps = {
     initialData?: Page,
@@ -20,6 +21,7 @@ export default function PageForm({ initialData, moduleList, onSuccess }: PageFor
         image1: '',
         image2: '',
         image3: '',
+        pageType: PageType.Pages,
         order: 1,
         status: true,
         moduleIds: '',
@@ -142,6 +144,22 @@ export default function PageForm({ initialData, moduleList, onSuccess }: PageFor
             </Row>
 
             <Form.Group className="mb-3">
+                <Form.Label>Sayfa Tipi</Form.Label>
+                <Form.Select
+                    name="pageType"
+                    value={formData.pageType ?? ''}
+                    onChange={handleChange}>
+                    <option value="">Seçiniz</option>
+                    {Object.entries(PageType).map(([key, value]) => (
+                        <option
+                            key={key} value={value}>
+                            {key}
+                        </option>
+                    ))}
+                </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
                 <Form.Label>Moduller</Form.Label>
                 <Form.Select
                     name="moduleIds"
@@ -155,7 +173,6 @@ export default function PageForm({ initialData, moduleList, onSuccess }: PageFor
                     ))}
                 </Form.Select>
             </Form.Group>
-
 
             <Tabs defaultActiveKey="tr" className="mb-3">
                 {formData.pageTranslations.map((translation, index) => (
