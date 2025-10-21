@@ -30,5 +30,8 @@
     "subtitle": "Browse our products by category",
     "description": "Browse our products by category.",
     "button": "All Categories"
+  },
+   "Others":{
+    "detail":"Detail"
   }
 }

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { usePagesByUrl } from '@/features/page/hooks/usePages';
-import Project from '@/app/(innerPage)/project/page';
+import Project from '@/components/pages/project/page';
 
 export default function PageDetail({slug,locale}:{slug:string,locale:string}) {
       const { data: page, isLoading, error } = usePagesByUrl(slug);

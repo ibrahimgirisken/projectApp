@@ -31,5 +31,8 @@
     "subtitle": "Ürünlerimizi kategorilere göre inceleyin",
     "description": "Ürünlerimizi kategorilere göre inceleyin.",
     "button": "Tüm Kategoriler"
+  },
+  "Others":{
+    "detail":"Detay"
   }
 }
