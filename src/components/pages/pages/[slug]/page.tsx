@@ -3,7 +3,7 @@ import React from 'react'
 import { usePages } from '@/features/page/hooks/usePages'
 import { Page, PageTranslation } from '@/features/page/types/page'
 import { useLocale } from 'next-intl'
-import Project from '@/app/[locale]/(ux)/project/page';
+import Project from '@/components/pages/project/page';
 
 export default function Slug({ params }: { params: { slug: string } }) {
   const { slug } = params

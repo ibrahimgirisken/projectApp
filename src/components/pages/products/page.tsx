@@ -5,6 +5,7 @@ import {Product} from '@/features/product/types/product'; // Tip ismini ProductT
 import { useLocale, useTranslations } from 'next-intl';
 import { Page, PageTranslation } from '@/features/page/types/page'; // Page tipini ekledim
 import PageTitle from '@/components/sections/pageTitle';
+import Link from 'next/link';
 
 interface ProductPageProps {
     page: Page; 
@@ -30,7 +31,6 @@ function ProductPage({ page, translation }: ProductPageProps) {
            
            <section className="project-section section-padding fix">
                <div className="container">
-                   {/* Buraya sayfanın açıklama içeriği (brief/content) gelebilir */}
                </div>
            </section>
            
@@ -43,15 +43,15 @@ function ProductPage({ page, translation }: ProductPageProps) {
                    if (!data) return null;
                    return (
                        <Col key={product.id}>
-                           <Card>
+                           <Card.Body>
                                <Card.Img variant="top" src={"/placeholder.jpg"} /> 
                                <Card.Body>
                                    <Card.Title>{product.code}</Card.Title>
                                    <Card.Title>{data.name}</Card.Title>
                                    <Card.Text>{data.brief}</Card.Text>
-                                   <a className='btn btn-primary' href={`${data.url}`}>{d('detail')}</a>
+                                   <Link href={`/${data.url}`} passHref legacyBehavior><a className='btn btn-primary'>{d('detail')}</a></Link>
                                </Card.Body>
-                           </Card>
+                           </Card.Body>
                        </Col>
                    );
                })}
