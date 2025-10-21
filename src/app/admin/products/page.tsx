@@ -1,12 +1,12 @@
 'use client'
 
 import { useProducts } from "@/features/product/hooks/useProducts"
+import ProductTranslation from "@/features/product/types/product";
 import Link from "next/link"
 import { Button, Spinner, Table } from "react-bootstrap"
 
 export default function ProductList() {
     const { data: products = [], isLoading, error } = useProducts();
-
     if (isLoading) {
         return <Spinner animation="border" />
     }
@@ -35,7 +35,7 @@ export default function ProductList() {
                     </thead>
                     <tbody>
                         {products.map((product, index) => {
-                            const trLang = product.productTranslations.find(t => t.langCode === 'tr')
+                            const trLang = product.productTranslations.find((t:ProductTranslation) => t.langCode === 'tr')
                             return (
                                 <tr key={product.id}>
                                     <td>{index + 1}</td>

@@ -21,7 +21,7 @@ export default function PageForm({ initialData, moduleList, onSuccess }: PageFor
         image1: '',
         image2: '',
         image3: '',
-        pageType: PageType.Pages,
+        pageType: PageType.Static,
         order: 1,
         status: true,
         moduleIds: '',

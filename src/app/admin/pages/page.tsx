@@ -13,10 +13,9 @@ export default function PageList() {
     if (error) {
         return <p>Veriler yüklenirken bir hata oluştu.</p>;
     }
-
     return (
 
-        <div>
+        <>
             <div className="d-flex justify-content-between align-items-center mb-3">
                 <h2>Sayfa Listesi</h2>
                 <Link href="/admin/pages/new">
@@ -58,6 +57,6 @@ export default function PageList() {
                     </tbody>
                 </Table>
             </div>
-        </div>
+        </>
     )
 }

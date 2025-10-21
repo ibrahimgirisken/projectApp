@@ -1,7 +1,7 @@
 'use client'
 import { useProducts } from '@/features/product/hooks/useProducts'
 import { Row, Col, Card } from 'react-bootstrap';
-import ProductType from '@/features/product/types/product'; // Tip ismini ProductType olarak değiştirdim
+import {Product} from '@/features/product/types/product'; // Tip ismini ProductType olarak değiştirdim
 import { useLocale, useTranslations } from 'next-intl';
 import { Page, PageTranslation } from '@/features/page/types/page'; // Page tipini ekledim
 import PageTitle from '@/components/sections/pageTitle';
@@ -36,7 +36,7 @@ function ProductPage({ page, translation }: ProductPageProps) {
            
            <h2 className="text-2xl font-semibold mb-4">{t('title')}</h2>
            <Row xs={1} md={3} className="g-4">
-               {products?.map((product: ProductType) => {
+               {products?.map((product: Product) => {
                    const data = product.productTranslations.find(
                        t => t.langCode == locale
                    );
@@ -49,7 +49,7 @@ function ProductPage({ page, translation }: ProductPageProps) {
                                    <Card.Title>{product.code}</Card.Title>
                                    <Card.Title>{data.name}</Card.Title>
                                    <Card.Text>{data.brief}</Card.Text>
-                                   <a className='btn btn-primary' href={`products/${data.url}`}>{d('detail')}</a>
+                                   <a className='btn btn-primary' href={`${data.url}`}>{d('detail')}</a>
                                </Card.Body>
                            </Card>
                        </Col>

@@ -2,15 +2,16 @@
 
 import { Container } from 'react-bootstrap';
 import React from 'react'
-import { useProductsBySlugAndLang } from '../hooks/useProducts';
+import { useProductsByUrl } from '../hooks/useProducts';
+import { PageTranslation } from '@/features/page/types/page';
 
 export default function ProductDetailPage({ slug, locale }: { slug: string; locale: string }) {
-  const { data: product, isLoading, error } = useProductsBySlugAndLang(slug, locale);
+  const { data: product, isLoading, error } = useProductsByUrl(slug);
 
   if (isLoading) return <div>Yükleniyor...</div>;
   if (error) return <div>Ürün bulunamadı.</div>;
 
-  const translation = product.productTranslations.find(t => t.langCode.startsWith(locale));
+  const translation = product.productTranslations.find((t:PageTranslation) => t.langCode==locale);
 
   return (
     <Container>

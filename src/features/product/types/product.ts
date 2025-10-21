@@ -1,4 +1,4 @@
-export default interface ProductTranslation {
+export interface ProductTranslation {
   langCode: string;
   name: string;
   url: string;
@@ -9,7 +9,7 @@ export default interface ProductTranslation {
   content: string;
 }
 
-export default interface Product {
+export interface Product {
   id: string;
   code: string;
   brandId: string | null;
