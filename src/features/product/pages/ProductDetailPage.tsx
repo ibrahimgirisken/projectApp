@@ -1,28 +1,32 @@
-'use client';
-
-import { Container } from 'react-bootstrap';
 import React from 'react'
-import { useProductsByUrl } from '../hooks/useProducts';
-import { PageTranslation } from '@/features/page/types/page';
+import { Card, Col, Row } from 'react-bootstrap'
+import { Product, ProductTranslation } from '../types/product'
+import { useLocale } from 'next-intl';
+import PageTitle from '@/components/sections/pageTitle';
 
-export default function ProductDetailPage({ slug, locale }: { slug: string; locale: string }) {
-  const { data: product, isLoading, error } = useProductsByUrl(slug);
-
-  if (isLoading) return <div>Yükleniyor...</div>;
-  if (error) return <div>Ürün bulunamadı.</div>;
-
-  const translation = product.productTranslations.find((t:PageTranslation) => t.langCode==locale);
-
+export default function ProductDetailPage({ params }: { params: Product }) {
+  const locale = useLocale();
+  const langData = params!.productTranslations?.find((x) => x.langCode === locale) as ProductTranslation;
+  const detailName = langData?.name ?? params!.code;
+  const imgPath = ('/uploads/products/' + params!.image1);
   return (
-    <Container>
-      <h1>{product.code}</h1>
-      {translation && (
-        <>
-          <h2>{translation.name}</h2>
-          <p>{translation.brief}</p>
-          <div dangerouslySetInnerHTML={{ __html: translation.content }} />
-        </>
-      )}
-    </Container>
-  );
+        <section className="project-section section-padding fix">
+          <div className="container">
+                <Row>
+                  <Col md={6}>
+                    <Card className="mb-4">
+                      <Card.Img
+                        src={imgPath}
+                        alt={detailName}
+                      />
+                    </Card>
+                  </Col>
+                  <Col md={6}>
+                    <h1 className="h3 mb-2">{langData?.name ?? params!.code}</h1>
+                    {langData?.brief && <p className="mb-3">{langData.brief}</p>}
+                  </Col>
+              </Row>
+          </div>
+        </section>
+  )
 }

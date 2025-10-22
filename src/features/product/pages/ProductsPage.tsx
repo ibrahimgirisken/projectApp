@@ -1,46 +1,37 @@
-'use client';
+import React from 'react'
+import { Card, Col, Row } from 'react-bootstrap';
+import { Product } from '../types/product';
+import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
-import { useProductsByLang } from '@/features/product/hooks/useProducts';
-import { Row, Col, Card } from 'react-bootstrap';
-import  Product  from '@/features/product/types/product';
-import { useTranslations } from 'next-intl';
-
-export default function UXProductsPage({ locale }: { locale: string }) {
-  const { data: products, isLoading, error } = useProductsByLang(locale);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  const t=useTranslations('Products');
+export default function ProductsPage({ params }: { params: Product[] }) {
+  const locale = useLocale();
+  const d = useTranslations('Others');
+  const pathname = usePathname();
   return (
-    <>
-      <h1 className="text-2xl font-semibold mb-4">{t('other.productTitle')}</h1>
-      <Row xs={1} md={3} className="g-4">
-        {products?.map((product: Product) => {
-          const translation = product.productTranslations.find((t) =>
-            t.langCode.startsWith(locale)
-          );
-          if (!translation) return null;
-
-          return (
-            <Col key={product.id}>
-              <Card>
-                <Card.Body>
-                  <Card.Title>{product.code}</Card.Title>
-                  <Card.Title>{translation.name}</Card.Title>
-                  <Card.Text>{translation.brief}</Card.Text>
-                  <a
-                    className="btn btn-primary"
-                    href={`/${t('route.products')}/${translation.url}`}
-                  >
-                    {t('other.details')}
-                  </a>
-                </Card.Body>
-              </Card>
-            </Col>
-          );
-        })}
-      </Row>
-    </>
-  );
+    <Row xs={1} md={3} className="g-4">
+      {params.map((product: Product) => {
+        const imgPath = `/uploads/products/` + product.image1;
+        const data = product.productTranslations?.find((t) => t.langCode === locale);
+        if (!data) return null;
+        const href = `${pathname}/${data.url}`;
+        return (
+          <Col key={product.id}>
+            <Card className="h-100">
+              <Card.Img variant="top" src={imgPath ?? '/placeholder.jpg'} alt={data.name} />
+              <Card.Body>
+                <Card.Title className="mb-1">{product.code}</Card.Title>
+                <Card.Subtitle className="text-muted mb-2">{data.name}</Card.Subtitle>
+                {data.brief && <Card.Text>{data.brief}</Card.Text>}
+                <Link href={href} className="btn btn-primary">
+                  {d('detail') ?? 'Detay'}
+                </Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        );
+      })}
+    </Row>
+  )
 }
-

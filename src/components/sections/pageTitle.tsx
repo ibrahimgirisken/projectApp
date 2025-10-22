@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const PageTitle = ({ title, currentPage }: { title: string; currentPage: string }) => {
+const PageTitle = ({ groupTitle, title, currentPage }: {groupTitle?:string; title?: string; currentPage?: string }) => {
   return (
     <div className="breadcrumb-wrapper bg-cover" style={{ backgroundImage: 'url("/img/breadcrumb.jpg")' }}>
       <div className="border-shape">

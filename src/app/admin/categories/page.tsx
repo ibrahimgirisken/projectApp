@@ -1,4 +1,5 @@
 'use client'
+import { useLocale } from 'next-intl';
 import { useCategories } from '@/features/category/hooks/useCategory'
 import Link from 'next/link'
 import { Button, Spinner, Table } from 'react-bootstrap'
@@ -6,7 +7,7 @@ import { Button, Spinner, Table } from 'react-bootstrap'
 export default function CategoryList() {
 
     const { data: categories = [], isLoading, error } = useCategories();
-
+    const locale=useLocale();
     if (isLoading) {
         return <Spinner animation="border" />
     }
@@ -35,7 +36,7 @@ export default function CategoryList() {
                     </thead>
                     <tbody>
                         {categories.map((category, index) => {
-                            const trLang = category.categoryTranslations.find(t => t.langCode === 'tr')
+                            const trLang = category.categoryTranslations.find(t => t.langCode === locale)
                             return (
                                 <tr key={category.id}>
                                     <td>{index + 1}</td>
