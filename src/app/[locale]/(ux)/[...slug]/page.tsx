@@ -3,9 +3,10 @@ import { PageTypeComponents } from '@/components/PageTypeComponents'
 import { usePages } from '@/features/page/hooks/usePages'
 import { Page, PageTranslation } from '@/features/page/types/page'
 import { useLocale } from 'next-intl'
+import { notFound } from 'next/navigation'
 import React from 'react'
 
-export default function RoutePage({ params }: { params: { slug: string } }) {
+export default function RoutePage({ params }: { params: { slug: string[] } }) {
     
     const { slug } = params
     const { data: pages, isLoading, error } = usePages()
@@ -15,15 +16,15 @@ export default function RoutePage({ params }: { params: { slug: string } }) {
     if (error) return <div>Hata oluştu</div>
 
     const page: Page | undefined = pages?.find(p =>
-        p.pageTranslations.some(t => t.url === slug)
+        p.pageTranslations.some(t => t.url === slug[0])
     )
 
-    if (!page) return <div>Sayfa bulunamadı</div>
+    if (!page) return notFound();
 
     const ContentComponent = PageTypeComponents[page.pageType];
     
     if (!ContentComponent) {
-        return <div>Hata: Tanımlanmamış Sayfa Tipi: {page.pageType}</div>;
+        return notFound();
     }
     
     const translation: PageTranslation | undefined = page.pageTranslations.find(
@@ -38,7 +39,8 @@ export default function RoutePage({ params }: { params: { slug: string } }) {
         <>
             <ContentComponent
                 page={page} 
-                translation={translationProp} 
+                translation={translationProp}
+                slug={slug}
             />
         </>
     )

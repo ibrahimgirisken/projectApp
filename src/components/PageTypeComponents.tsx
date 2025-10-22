@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductPage from './pages/products/page';
 import StaticPage from './pages/static/page';
+import ProductDetailPage from './pages/products/[slug]/page';
 
 
 interface PageComponentMap {
