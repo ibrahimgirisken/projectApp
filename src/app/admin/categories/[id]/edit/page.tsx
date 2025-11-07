@@ -1,12 +1,13 @@
 'use client'
 import CategoryForm from '@/features/category/components/CategoryForm'
-import { useCategoryById } from '@/features/category/hooks/useCategory'
+import { useCategories, useCategoryById } from '@/features/category/hooks/useCategory'
 import { useParams, useRouter } from 'next/navigation'
 
 export default function CategoryEdit() {
     const router = useRouter()
     const { id } = useParams()
-    const { data: category, isLoading, error } = useCategoryById(id as string);
+    const {data: category, isLoading, error } = useCategoryById(id as string);
+    const {data:categories=[]}=useCategories();
     if (isLoading) {
         return <p>Yükleniyor...</p>;
     }
@@ -18,7 +19,7 @@ export default function CategoryEdit() {
         <>
             <h2>Kategori Düzenleme</h2>
             {category && (
-                <CategoryForm initialData={category}
+                <CategoryForm initialData={category} categoryList={categories}
                     onSuccess={() => {
                         console.log("Kategori Güncellendi"),
                             router.push('/admin/categories')

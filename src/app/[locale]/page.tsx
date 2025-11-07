@@ -13,15 +13,15 @@ export default function HomePage() {
   return (
     <>
     <HeroFour />
-      <PartnersTwo />
-      <ServicesFour />
-      <AboutFour />
-      <ProjectsFour />
-      <TeamesFour />
-      <TestimonialFour />
-      <AchievementTwo className='section-padding pt-0' />
-      <FaqHomeFour className='pt-0'/>
-      <BlogsFour />
+    <PartnersTwo />
+    <ServicesFour />
+    <AboutFour />
+    <ProjectsFour />
+    <TeamesFour />
+    <TestimonialFour />
+    <AchievementTwo className='section-padding pt-0' />
+    <FaqHomeFour className='pt-0'/>
+    <BlogsFour />
     </>
   )
 }

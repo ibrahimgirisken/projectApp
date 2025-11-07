@@ -82,7 +82,6 @@ export default function ProductForm({ initialData, categoryList, brandList, onSu
   const handleTranslationChange = (index: number, field: string, value: string) => {
     setFormData((prev) => {
       const updatedTranslations = [...prev.productTranslations]
-
       updatedTranslations[index] = {
         ...updatedTranslations[index],
         [field]: value,
