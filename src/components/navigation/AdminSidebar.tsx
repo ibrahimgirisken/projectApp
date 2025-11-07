@@ -23,7 +23,6 @@ export default function ResponsiveSidebar() {
   const homesPath = `/admin/homes`;
   const settingsPath = `/admin/settings/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA/edit`;
   const langsPath = `/admin/langs`;
-  const translationsPath = `/admin/translations`;
   const usersPath = `/admin/users`;
   const permissionsPath = `/admin/permissions`;
 
@@ -39,7 +38,6 @@ export default function ResponsiveSidebar() {
     { href: homesPath, label: `Anasayfa İçerik` },
     { href: settingsPath, label: `Genel Ayarlar` },
     { href: langsPath, label: `Dil Ayarları` },
-    { href: translationsPath, label: `Dil İçerikleri` },
     { href: usersPath, label: `Kullanıcılar` },
     { href: permissionsPath, label: `Kullanıcı Yetki İzinleri` },
   ]
