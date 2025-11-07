@@ -3,13 +3,15 @@ import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Tab, Tabs } from 'react-bootstrap'
 import { Category } from '../types/category'
 import { useCreateCategory, useUpdateCategory } from '../hooks/useCategory'
+import ImageUpload from '@/shared/imageUpload';
 
 type CategoryFormProps = {
     initialData?: Category,
+    categoryList:Category[],
     onSuccess?: () => void
 }
 
-export default function CategoryForm({ initialData, onSuccess }: CategoryFormProps) {
+export default function CategoryForm({ initialData,categoryList, onSuccess }: CategoryFormProps) {
 
     const [formData, setFormData] = useState<Category>({
         id: '',
@@ -55,7 +57,7 @@ export default function CategoryForm({ initialData, onSuccess }: CategoryFormPro
         }
     }, [initialData])
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target
         setFormData((prev) => ({
             ...prev,
@@ -95,28 +97,30 @@ export default function CategoryForm({ initialData, onSuccess }: CategoryFormPro
         <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
                 <Col>
-                    <Form.Group>
-                        <Form.Label>Görsel</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="image1"
-                            value={formData.image1}
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group>
-                        <Form.Label>Kategori</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="parentId"
-                            value={formData.parentId ?? ''}
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
+                    <ImageUpload
+                        name="image1"
+                        folder="categories"
+                        value={formData.image1}
+                        onChange={(name, val) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                [name]: val,
+                            }))
+                        } />
                 </Col>
             </Row>
+            <Form.Group className="mb-3">
+                <Form.Label>Kategori</Form.Label>
+                <Form.Select
+                    name="parentId"
+                    value={formData.parentId ?? ''}
+                    onChange={handleChange}>
+                        <option value="">Seçiniz</option>
+                        {categoryList?.map((category)=>(
+                            <option key={category.id} value={category.id}>{category.categoryTranslations.find(t=>t.langCode==='tr')?.name}</option>
+                        ))}
+                </Form.Select>
+            </Form.Group>
 
             <Tabs defaultActiveKey="tr" className="mb-3">
                 {formData.categoryTranslations.map((translation, index) => (
